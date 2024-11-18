@@ -1,0 +1,10 @@
+[
+  {
+    "name": "help",
+    "description": "Display a list of available commands."
+  },
+  {
+    "name": "version",
+    "description": "Display the current version of the CLI."
+  }
+]
