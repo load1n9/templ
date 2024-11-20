@@ -1,5 +1,5 @@
 import { walk } from "@std/fs";
-import { decodeBase64, encodeBase64 } from "@std/encoding/base64";
+import { encodeBase64 } from "@std/encoding/base64";
 
 /**
  * File entry.
@@ -63,22 +63,4 @@ export async function projectToTemplate(
     }
   }
   return template;
-}
-
-/**
- * Convert a template to a project.
- */
-export async function templateToProject(
-  template: Template,
-  dir: string,
-): Promise<void> {
-  for (const directory of template.directories) {
-    await Deno.mkdir(`${dir}/${directory}`, { recursive: true });
-  }
-  for (const file of template.files) {
-    const content = new TextDecoder().decode(
-      decodeBase64(file.content),
-    );
-    await Deno.writeTextFile(`${dir}/${file.path}`, content);
-  }
 }
